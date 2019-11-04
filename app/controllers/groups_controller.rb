@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-<<<<<<< HEAD
+
   def index
   end
 
@@ -36,6 +36,3 @@ class GroupsController < ApplicationController
   end
 end
 
-=======
-end
->>>>>>> 2b536f94ec4c1dab86783b953537efc9d4237242
