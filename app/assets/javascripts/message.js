@@ -55,7 +55,6 @@ $(function() {
           dataType: "json",
         })
         .done(function(messages) {
-          console.log("ok")
           var insertHTML = '';
           messages.forEach(function (message) {
             insertHTML = buildHTML(message)
