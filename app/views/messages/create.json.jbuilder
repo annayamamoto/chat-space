@@ -1,5 +1,5 @@
-json.id  @message.id
+json.image  @message.image
+json.content @message.content
+json.created_at  @message.created_at
 json.user_name  @message.user.name
-json.content  @message.content
-json.data  @message.created_at
-json.image  @message.image.url
+json.id  @message.id
