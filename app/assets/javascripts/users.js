@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
   function addUser(user) {
     var html = `
       <div class="chat-group-user clearfix">
@@ -29,8 +29,8 @@ $(function(){
   function addMember(userId) {
     var html = `<input value="${userId}" name="group[user_ids][]" type="hidden" id="group_user_ids_${userId}" />`;
     $(`#${userId}`).append(html);
-  } 
-  $("#user-search-field").on("keyup", function(){
+  }
+  $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
     $.ajax({
       type: "GET",
@@ -40,19 +40,19 @@ $(function(){
     })
       .done(function(users) {
         $("#user-search-result").empty();
-    
+
         if (users.length !== 0) {
-            users.forEach(function(user) {
-              addUser(user);
-            });
+          users.forEach(function(user) {
+            addUser(user);
+          });
         } else if (input.length == 0) {
           return false;
         } else {
-          addNoUser();
+          addNoUser("一致するユーザーがいません");
         }
       })
       .fail(function() {
-          alert("ユーザーの検索に失敗しました");
+        alert("ユーザーの検索に失敗しました");
       });
   });
   $(document).on("click", ".chat-group-user__btn--add", function() {
