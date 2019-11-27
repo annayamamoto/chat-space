@@ -1,8 +1,9 @@
 $(function() {
   function buildHTML(message) {
+    console.log(message.image)
       var content = message.content ? `<p class="lower-message__content">${message.content}</p>`:``;
-      var image = message.image.url ? `<img src="${message.image.url}"class="lower-message__image">`:``;
-      var html = `<div class="message", data-message-id="${message.id}">
+      var image = message.image ? `<img src="${message.image}" class="lower-message__image">`:``;
+      var html = `<div class="message" data-message-id="${message.id}">
             <div class="upper-message">
               <div class="upper-message__user-name">
                 ${ message.user_name }
@@ -12,9 +13,7 @@ $(function() {
               </div>
             </div>
             <div class="lower-message">
-              <p class="lower-message__content">
                 ${ content }
-              </p>
                 ${ image }
             </div>
           </div>`
@@ -33,11 +32,16 @@ $(function() {
         contentType: false,
       })
       .done(function(data){
+        if ( data.content != undefined ){
         var html = buildHTML(data);
         $('.messages').append(html);
         $('#new_message')[0].reset();
         $(".form__submit").prop("disabled", false);
-        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+        }
+        else{
+          alert("メッセージを入力してください")
+        }
       })
       .fail(function(){
         alert('メッセージの送信に失敗しました');
@@ -54,7 +58,7 @@ $(function() {
           data: {id: last_message_id},
           dataType: "json",
         })
-        .done(function(messages) {
+        .done(function(data) {
           var insertHTML = '';
           messages.forEach(function (message) {
             insertHTML = buildHTML(message)
